@@ -23,6 +23,6 @@ Route::post('/login' ,'UserController@login');
 //     return view('welcome');
 // });
 Route::get('/','UserController@index');
-
+Route::get('/detail/{id}','UserController@detail');
 Route::get('/logout','UserController@logout');
 

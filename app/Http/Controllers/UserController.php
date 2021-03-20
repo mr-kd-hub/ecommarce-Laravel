@@ -50,5 +50,18 @@ class UserController extends Controller
         }
         
     }
+    function detail($id='',Request $req)
+    {
+        if($req->session()->has('email'))
+        {
+            $data = product::find($id);
+            return view('detail',['product'=>$data]);
+        }
+        else
+        {
+            $req->session()->flash("error","login first");
+            return redirect('login');
+        }
+    }
     
 }
