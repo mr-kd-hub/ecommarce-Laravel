@@ -19,10 +19,10 @@ Route::get('/login', function () {
 });
 Route::post('/login' ,'UserController@login');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::post('/','UserController@index');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','UserController@index');
 
 Route::get('/logout','UserController@logout');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\DB;
 use App\tbl_user;
+use App\product;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -38,7 +39,9 @@ class UserController extends Controller
     {
         if($req->session()->has('email'))
         {
-            return redirect('/');
+            $data=product::all();
+            return view('welcome',['products'=>$data]);
+           //return product::all();
         }
         else
         {
