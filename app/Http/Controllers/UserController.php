@@ -63,5 +63,10 @@ class UserController extends Controller
             return redirect('login');
         }
     }
+    function search(Request $req)
+    {
+       $data=product::where('name','like','%'.$req->input('query').'%')->get();
+        return view('search',['searchProduct'=>$data]);
+    }
     
 }
