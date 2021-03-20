@@ -12,7 +12,7 @@ class UserController extends Controller
     function login(Request $req)
     {     
         
-            //retrive from database
+            //retrive from model
             $user = tbl_user::where(['email'=>$req->email])->first();
 
             if(!$user || !Hash::check($req->password,$user->password))
@@ -24,6 +24,7 @@ class UserController extends Controller
             {
                 $req->session()->put('email',$req->email);
                 return redirect('/');
+                //return view('welcome');
             }
         
              
@@ -46,4 +47,5 @@ class UserController extends Controller
         }
         
     }
+    
 }
