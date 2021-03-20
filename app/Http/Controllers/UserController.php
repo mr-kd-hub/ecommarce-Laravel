@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\DB;
+//hash
+use Illuminate\Support\Facades\Hash;
+//models
 use App\tbl_user;
 use App\product;
-use Illuminate\Support\Facades\Hash;
+use App\cart;
+
 
 class UserController extends Controller
 {
@@ -26,9 +29,7 @@ class UserController extends Controller
                 $req->session()->put('email',$req->email);
                 return redirect('/');
                 //return view('welcome');
-            }
-        
-             
+            }            
     }
     function logout(Request $req)
     {
@@ -48,7 +49,6 @@ class UserController extends Controller
             $req->session()->flash("error","login first");
             return redirect('login');
         }
-        
     }
     function detail($id='',Request $req)
     {
@@ -68,5 +68,20 @@ class UserController extends Controller
        $data=product::where('name','like','%'.$req->input('query').'%')->get();
         return view('search',['searchProduct'=>$data]);
     }
-    
+    function addtocart(Request $req)
+    {
+        if($req->session()->has('email'))
+        {
+            $cart=new cart;
+            $cart->uid=$req->session()->get('email')['id'];
+            $cart->pid=$req->pid;
+            $cart->save();
+            return view("/");
+        }
+        else
+        {
+            $req->session()->flash("error","login first");
+            return redirect('login');
+        }
+    }
 }

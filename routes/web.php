@@ -22,4 +22,5 @@ Route::get('/','UserController@index');
 Route::get('/detail/{id}','UserController@detail');
 Route::get('/logout','UserController@logout');
 Route::get('/search','UserController@search');
+Route::post('/addtocart' ,'UserController@addtocart');
 
