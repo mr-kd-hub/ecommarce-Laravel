@@ -14,7 +14,14 @@
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Cart(0)</a>
+            <a class="nav-link" href="#" tabindex="-1">Cart(0)</a>
+          </li>
+          <li class="nav-item">
+            @if(session()->has('email'))
+              <a class="nav-link" href="logout" tabindex="-1" >Logout</a>
+            @elseif(!session()->has('email'))
+              <a class="nav-link" href="login" tabindex="-1" >Login</a>
+            @endif
           </li>
         </ul>
         <form class="d-flex">
