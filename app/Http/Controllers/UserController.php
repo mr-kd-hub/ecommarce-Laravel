@@ -72,10 +72,10 @@ class UserController extends Controller
     {
         if($req->session()->has('email'))
         {
-            $cart=new cart;
-            $cart->uid=$req->session()->get('email')['id'];
-            $cart->pid=$req->pid;
-            $cart->save();
+            // $cart=new cart;
+            // $cart->uid=$req->session()->get('email')['id'];
+            // $cart->pid=$req->pid;
+            // $cart->save();
             return view("/");
         }
         else
