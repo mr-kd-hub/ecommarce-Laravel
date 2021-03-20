@@ -72,16 +72,22 @@ class UserController extends Controller
     {
         if($req->session()->has('email'))
         {
-            // $cart=new cart;
-            // $cart->uid=$req->session()->get('email')['id'];
-            // $cart->pid=$req->pid;
-            // $cart->save();
-            return view("/");
+            //return $req->session()->get('email')['id'];
+            $cart=new cart;
+            $cart->uid=$req->session()->get('email');
+            $cart->pid=$req->pid;
+            $cart->save();
+            return redirect("/");
         }
         else
         {
             $req->session()->flash("error","login first");
             return redirect('login');
         }
+    }
+    static function cartItem()
+    {
+        $uid=session()->get('email');
+        return cart::where('uid',$uid)->count();
     }
 }

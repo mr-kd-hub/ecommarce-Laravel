@@ -1,3 +1,7 @@
+<?php
+  use App\Http\Controllers\UserController;
+  $total=UserController::cartItem();
+?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
@@ -14,7 +18,7 @@
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1">Cart(0)</a>
+            <a class="nav-link" href="#" tabindex="-1">Cart({{$total}})</a>
           </li>
           <li class="nav-item">
             @if(session()->has('email'))
