@@ -24,11 +24,21 @@ Route::get('/reg', function () {
 });
 Route::post('/reg' ,'UserController@reg');
 
-Route::post('/login' ,'UserController@login');
+Route::get('/addP',function() {
+    return view('addProduct');
+});
+Route::post('/addP','UserController@addP');
+
+
+
 Route::get('/','UserController@index');
 Route::get('/detail/{id}','UserController@detail');
+Route::get('/deleteP/{id}','UserController@deleteP');
 Route::get('/logout','UserController@logout');
-Route::post('/search','UserController@search');
 Route::get('/cartlist','UserController@cartlist');
+Route::get('/updateP/{id}','UserController@updateP');//get product
+
+Route::post('/update','UserController@update');//set product
 Route::post('/addtocart' ,'UserController@addtocart');
+Route::post('/search','UserController@search');
 

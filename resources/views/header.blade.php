@@ -16,7 +16,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Orders</a>
           </li>
-         
+          <li class="nav-item">
+            <a class="nav-link" href="addP">Add Products</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="cartlist" tabindex="-1">Cart({{$total}})</a>
           </li>

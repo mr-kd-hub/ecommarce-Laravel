@@ -55,19 +55,6 @@ class UserController extends Controller
             return redirect('login');
         }
     }
-    function detail($id='',Request $req)
-    {
-        if($req->session()->has('email'))
-        {
-            $data = product::find($id);
-            return view('detail',['product'=>$data]);
-        }
-        else
-        {
-            $req->session()->flash("error","login first");
-            return redirect('login');
-        }
-    }
     function search(Request $req)
     {
        $data=product::where('name','like','%'.$req->input('query').'%')->get();
@@ -120,5 +107,56 @@ class UserController extends Controller
         $user->save();
         return redirect('/login');
 
+    }
+    function addP(Request $req)
+    {
+        $product = new product;
+        $product->name=$req->input('name');
+        $product->price=$req->input('price');
+        $product->category=$req->input('category');
+        $product->gallery=$req->input('gallery');
+        if($product->save())
+        {
+            $req->session()->flash('success',"Product Added");
+            return redirect('addP');
+        }
+    }
+    function deleteP($id='',Request $req)
+    {
+        $d = product::where(['id'=>$id])->delete();  
+        if($d) 
+        {
+            $req->session()->flash('success',"Product Deleted");
+            return redirect('/');
+        }
+    }
+    function detail($id='',Request $req)
+    {
+        if($req->session()->has('email'))
+        {
+            $data = product::find($id);
+            return view('detail',['product'=>$data]);
+        }
+        else
+        {
+            $req->session()->flash("error","login first");
+            return redirect('login');
+        }
+    }
+    function updateP($id='',Request $req)
+    {
+        //get product
+        $data = product::find($id);
+        return view('updateP',['product'=>$data]);
+    }
+    function update(Request $req)
+    {
+        $id=$req->input('id');
+        $d = product::where(['id'=>$id])->update(['name'=>$req->name,'price'=>$req->price,'category'=>$req->category,'gallery'=>$req->gallery]);
+        if($d) 
+        {
+            $req->session()->flash('success',"Product Updated");
+            return redirect('/');
+        }
     }
 }
