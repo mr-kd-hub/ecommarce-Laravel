@@ -18,7 +18,7 @@
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href="#" tabindex="-1">Cart({{$total}})</a>
+            <a class="nav-link" href="cartlist" tabindex="-1">Cart({{$total}})</a>
           </li>
           <li class="nav-item">
             @if(session()->has('email'))
@@ -28,7 +28,8 @@
             @endif
           </li>
         </ul>
-        <form action="search" class="d-flex">
+        <form action="search" method="post" class="d-flex">
+          @csrf
           <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>

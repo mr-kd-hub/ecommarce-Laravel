@@ -18,9 +18,17 @@ Route::get('/login', function () {
     return view('login');
 });
 Route::post('/login' ,'UserController@login');
+
+Route::get('/reg', function () {
+    return view('reg');
+});
+Route::post('/reg' ,'UserController@reg');
+
+Route::post('/login' ,'UserController@login');
 Route::get('/','UserController@index');
 Route::get('/detail/{id}','UserController@detail');
 Route::get('/logout','UserController@logout');
-Route::get('/search','UserController@search');
+Route::post('/search','UserController@search');
+Route::get('/cartlist','UserController@cartlist');
 Route::post('/addtocart' ,'UserController@addtocart');
 
